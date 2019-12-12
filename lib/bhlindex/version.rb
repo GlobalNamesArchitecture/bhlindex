@@ -4,7 +4,7 @@
 module Bhlindex
   VERSION = '0.1.0'
 
-  def version
+  def self.version
     VERSION
   end
 end
