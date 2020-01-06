@@ -28,19 +28,45 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "protob.PagesOpt" do
       optional :with_text, :bool, 1
-      repeated :title_ids, :int32, 2
+      optional :offsets_only, :bool, 2
+      repeated :title_ids, :int32, 3
     end
     add_message "protob.NameString" do
-      optional :value, :string, 1
-      optional :odds, :float, 2
-      optional :path, :string, 3
-      optional :curated, :bool, 4
-      optional :edit_distance, :int32, 5
-      optional :edit_distance_stem, :int32, 6
-      optional :source_id, :int32, 7
-      optional :match, :enum, 8, "protob.MatchType"
-      optional :offset_start, :int32, 9
-      optional :offset_end, :int32, 10
+      optional :id, :string, 1
+      optional :value, :string, 2
+      optional :taxon_id, :string, 3
+      optional :matched, :string, 4
+      optional :matched_canonical, :string, 5
+      optional :current, :string, 6
+      optional :odds, :float, 7
+      optional :occurences, :int32, 8
+      optional :classification, :string, 9
+      optional :curated, :bool, 10
+      optional :edit_distance, :int32, 11
+      optional :edit_distance_stem, :int32, 12
+      optional :data_source_id, :int32, 13
+      optional :data_source_title, :string, 14
+      optional :data_sources_num, :int32, 15
+      optional :match, :enum, 16, "protob.MatchType"
+      optional :offset_start, :int32, 17
+      optional :offset_end, :int32, 18
+      optional :verif_error, :bool, 19
+      repeated :preferred, :message, 20, "protob.PreferredResult"
+    end
+    add_message "protob.PreferredResult" do
+      optional :taxon_id, :string, 1
+      optional :matched, :string, 2
+      optional :matched_canonical, :string, 3
+      optional :current, :string, 4
+      optional :path, :string, 5
+      optional :edit_distance, :int32, 7
+      optional :edit_distance_stem, :int32, 8
+      optional :data_source_id, :int32, 9
+      optional :data_source_title, :string, 10
+      optional :match, :enum, 11, "protob.MatchType"
+    end
+    add_message "protob.NamesOpt" do
+      optional :with_preferred_results, :bool, 1
     end
     add_enum "protob.MatchType" do
       value :NONE, 0
@@ -61,5 +87,7 @@ module Protob
   Page = Google::Protobuf::DescriptorPool.generated_pool.lookup("protob.Page").msgclass
   PagesOpt = Google::Protobuf::DescriptorPool.generated_pool.lookup("protob.PagesOpt").msgclass
   NameString = Google::Protobuf::DescriptorPool.generated_pool.lookup("protob.NameString").msgclass
+  PreferredResult = Google::Protobuf::DescriptorPool.generated_pool.lookup("protob.PreferredResult").msgclass
+  NamesOpt = Google::Protobuf::DescriptorPool.generated_pool.lookup("protob.NamesOpt").msgclass
   MatchType = Google::Protobuf::DescriptorPool.generated_pool.lookup("protob.MatchType").enummodule
 end
